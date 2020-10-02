@@ -1,0 +1,17 @@
+IMAGENS
+Experimento 1 (speaker dependent): mesmo ator
+Experimento 2 (speaker independent): Diferente atores
+
+
+Esquema de divisão de treinamento/teste (holdout)
+no caso de speaker independent: poderíamos começar usando 18 atores para treinamento e 6 para teste (3 homens e 3 mulheres)
+no caso de speaker dependent: poderíamos usar 75% dos exemplos do ator para treinar e 25% para testar.
+
+
+Experimento 1 (speaker dependent): mesmo ator
+Treinar com 75% dos dados (15% para validação) e testar com 25%
+8 videos por emocao - 5 treino - 1 validacao - 2 teste (frases e entonações diferentes)
+
+
+Experimento 2 (speaker independent): Diferente atores
+14 atores para treinamento - 4 validação (2 homens e 2 mulheres) - 6 para teste (3 homens e 3 mulheres)
