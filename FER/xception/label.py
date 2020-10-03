@@ -31,7 +31,7 @@ def main(args):
 
 		final_result = [["Angry", "Disgust", "Fearful", "Happy", "Sad", "Surprised", "Neutral", "Video", "Frame", "Correct_Class", "Predicted_Class"]]
 		actor += 1
-		csv_name = "Actor_{}.csv".format(actor)
+		csv_name = "results/Actor_{}.csv".format(actor)
 		done = 0
 		n_images = len(next(os.walk(images_folder + '/' + folder))[2])
 
@@ -39,8 +39,7 @@ def main(args):
 
 			image_path = images_folder +'/'+ folder + '/' + path
 			imgname = os.path.splitext(path)[0]
-			
-			print(imgname)
+
 			video = imgname.split('_')[0]
 			frame = imgname.split('-')[-1]
 			classe = imgname.split('-')[2]
@@ -71,7 +70,6 @@ def main(args):
 				predictions.append(frame)
 				predictions.append(nome_classe)
 				predictions.append(classes_fer[prediction_result])
-				print(predictions)
 				
 				final_result.append(predictions)
 				

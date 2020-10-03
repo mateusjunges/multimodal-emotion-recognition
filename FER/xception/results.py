@@ -2,16 +2,14 @@ import os
 import csv
 import numpy as np
 
-actors = sorted(os.listdir('/home/luciana/Doutorado/BASES/RAVDESS/videos'))
-
-print(actors)
+actors = sorted(os.listdir('/home/mateus/Documents/UEPG/original-dataset/'))
 
 acertou = 0
 errou = 0
 
 for actor in actors:
 
-	path = '/home/luciana/Doutorado/BASES/RAVDESS/videos/{}'.format(actor)
+	path = '/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/results/'.format(actor)
 	videos = sorted(os.listdir(path))
 
 	labels = ['Angry', 'Calm', 'Disgust', 'Fearful', 'Happy', 'Neutral', 'Sad', 'Surprised']
@@ -20,6 +18,9 @@ for actor in actors:
 	for video in videos:
 		if video.split('.')[0] not in lista_videos:
 			lista_videos.append(video.split('.')[0])
+	print(lista_videos)
+	exit()
+
 
 	for video in lista_videos:
 
@@ -29,13 +30,13 @@ for actor in actors:
 		csv_file = "{}.csv".format(actor)
 		print(csv_file)
 		with open(csv_file, 'r') as arquivo_csv:
-		
+
 			leitor = csv.reader(arquivo_csv, delimiter=',')
 
 			for linha in leitor:
-				
+
 				if video == linha[7]:
-					
+
 					true_label = linha[9]
 					#Correct Class
 					if linha[9] != 'Neutral':
