@@ -30,6 +30,7 @@ def main(args):
 
 	for video_path in final_path:
 
+		total_frames_for_video = 0
 		i = 1
 		print(video_path)
 		actor = video_path.split('/')[-2]
@@ -43,19 +44,26 @@ def main(args):
 		while cap.isOpened():
 
 			ret, frame = cap.read()
+			if i > 25:
+				if not ret:
+					break
 
-			if not ret:
-				break
-			
-			img = Image.fromarray(cvtColor(frame, COLOR_BGR2RGB))
-			img.save(save_frames_to + '/' + actor + '/' + video + '_frame-' + str(i) + '.jpg')
-			
+				img = Image.fromarray(cvtColor(frame, COLOR_BGR2RGB))
+				img.save(save_frames_to + '/' + actor + '/' + video + '_frame-' + str(i) + '.jpg')
+
 			i += 1
-			#print("Frame saved: {}".format(save_frames_to + '/' + actor + '/' + video + '_frame-' + str(i) + '.jpg'))
-			
+			total_frames_for_video += 1
+			# print("Frame saved: {}".format(save_frames_to + '/' + actor + '/' + video + '_frame-' + str(i) + '.jpg'))
 
 		done += 1
-		print("Processing... {}/{} ({} %)".format(done, (n_videos), round((done/(n_videos))*100, 2)))
+		print("Processing... {}/{} ({} %)".format(done, (n_videos), round((done / (n_videos)) * 100, 2)))
+
+		remove_until = total_frames_for_video - 25
+
+		if total_frames_for_video > 0:
+			while total_frames_for_video > remove_until:
+				os.remove(save_frames_to + '/' + actor + '/' + video + '_frame-' + str(total_frames_for_video) + '.jpg')
+				total_frames_for_video -= 1
 
 
 

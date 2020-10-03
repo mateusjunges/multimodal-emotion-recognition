@@ -43,32 +43,32 @@ def main(args):
 		actor += 1
 		done = 0
 		n_images = len(next(os.walk(images_folder + '/' + folder))[2])
+		if actor > 12:
+			for path in sorted(os.listdir(images_folder + '/' + folder)):
 
-		for path in sorted(os.listdir(images_folder + '/' + folder)):
+				image_path = images_folder +'/'+ folder + '/' + path
+				imgname = os.path.splitext(path)[0]
+				#print(image)
+				img = dlib.load_rgb_image(image_path)
+				# Ask the detector to find the bounding boxes of each face.
+				dets = detector(img, 0)
+				num_faces = len(dets)
+				if (num_faces == 1):
+					faces = dlib.full_object_detections()
+					faces.append(sp(img, dets[0]))
+					aligned = dlib.get_face_chips(img, faces, size, padding)
+					#img_list.append(aligned[0])
+					save_path = output_folder +'/'+ folder + '/' + "{}.png".format(imgname)
+					directory = os.path.dirname(save_path)
+					if not os.path.exists(directory):
+						os.makedirs(directory)
+					#print(save_path)
+					final_image = cv2.cvtColor(aligned[0], cv2.COLOR_BGR2RGB)
+					cv2.imwrite(save_path, final_image, [cv2.IMWRITE_JPEG_QUALITY, 100])
+					#misc.imsave(save_path, aligned[0])
 
-			image_path = images_folder +'/'+ folder + '/' + path
-			imgname = os.path.splitext(path)[0]
-			#print(image)
-			img = dlib.load_rgb_image(image_path)
-			# Ask the detector to find the bounding boxes of each face.
-			dets = detector(img, 0)
-			num_faces = len(dets)
-			if (num_faces == 1):
-				faces = dlib.full_object_detections()
-				faces.append(sp(img, dets[0]))
-				aligned = dlib.get_face_chips(img, faces, size, padding)
-				#img_list.append(aligned[0])
-				save_path = output_folder +'/'+ folder + '/' + "{}.png".format(imgname)
-				directory = os.path.dirname(save_path)
-				if not os.path.exists(directory):
-					os.makedirs(directory)
-				#print(save_path)
-				final_image = cv2.cvtColor(aligned[0], cv2.COLOR_BGR2RGB)
-				cv2.imwrite(save_path, final_image, [cv2.IMWRITE_JPEG_QUALITY, 100])
-				#misc.imsave(save_path, aligned[0])
-			
-			done = done + 1
-			print("Processing Actor {}... {}/{} ({} %)".format(actor, done, (n_images), round((done/(n_images))*100, 2)))
+				done = done + 1
+				print("Processing Actor {}... {}/{} ({} %)".format(actor, done, (n_images), round((done/(n_images))*100, 2)))
 		
 
 	t2 = time.time()
