@@ -38,18 +38,11 @@ for actor in actors:
 				if video == linha[7]:
 
 					true_label = linha[9]
-					#Correct Class
+
 					if linha[9] != 'Neutral':
-						#Video
-						#print(linha[7])
-						#Frame
-						#print(linha[8])
-						#Predicted Class
 						predicted = linha[10]
 						if predicted == 'Angry':
 							angry += 1
-						#elif predicted == 'Calm':
-						#	calm += 1
 						elif predicted == 'Disgust':
 							disgust += 1
 						elif predicted == 'Fearful':
