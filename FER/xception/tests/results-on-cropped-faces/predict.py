@@ -70,19 +70,21 @@ def main():
             for item in prediction[0]:
                 predictions.append(float(item))
 
+            predicted_class_name = classes_ravdess[int(correct_class) - 1]
+            correct_class_name = classes_fer[prediction_result]
             predictions.append(video)
             predictions.append(frame)
             predictions.append(correct_class)
             predictions.append(prediction_result)
-            predictions.append(classes_fer[prediction_result])
-            predictions.append(classes_ravdess[int(correct_class) - 1])
+            predictions.append(correct_class_name)
+            predictions.append(predicted_class_name)
             final_result.append(predictions)
 
             done += 1
 
-            print("Processing actor {} of {} actors - Image {} of {}".format(done_actors, len(actors), done, len(images)))
+            print("Processing actor {} of {} actors - Image {} of {} - Predicted: {} - Correct: {}".format(done_actors, len(actors), done, len(images), predicted_class_name, correct_class_name))
 
-    with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-cropped-faces/results-with-class-name/{}".format(csv_name), mode='a+') as file:
+        with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-cropped-faces/results-with-class-name/{}".format(csv_name), mode='a+') as file:
             writer = csv.writer(file)
             writer.writerows(final_result)
 
