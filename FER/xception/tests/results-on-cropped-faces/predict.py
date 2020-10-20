@@ -70,8 +70,8 @@ def main():
             for item in prediction[0]:
                 predictions.append(float(item))
 
-            predicted_class_name = classes_ravdess[int(correct_class) - 1]
-            correct_class_name = classes_fer[prediction_result]
+            predicted_class_name = classes_fer[prediction_result]
+            correct_class_name = classes_ravdess[int(correct_class) - 1]
             predictions.append(video)
             predictions.append(frame)
             predictions.append(correct_class)
