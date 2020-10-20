@@ -12,14 +12,14 @@ classes_fer = ["Angry", "Disgust", "Fearful", "Happy", "Sad", "Surprised", "Neut
 classes_ravdess = ["Neutral", "Calm", "Happy", "Sad", "Angry", "Fearful", "Disgust", "Surprised"]
 
 def main():
-    cropped_images_folder = "/home/mateus/Documents/datasets/ravdess-frames"
+    full_frames_path = "/home/mateus/Documents/datasets/ravdess-frames"
     model_path = "/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/xception-model.h5"
     weights_path = "/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/final_xception.h5"
 
     model = load_model(model_path)
     model.load_weights(weights_path)
 
-    actors = os.listdir(cropped_images_folder)
+    actors = os.listdir(full_frames_path)
     done_actors = 0
 
     for actor in sorted(actors):
@@ -46,9 +46,9 @@ def main():
 
         done = 0
 
-        images = os.listdir(cropped_images_folder + "/" + actor)
+        images = os.listdir(full_frames_path + "/" + actor)
         for image in sorted(images):
-            image_path = cropped_images_folder + "/" + actor + "/" + image
+            image_path = full_frames_path + "/" + actor + "/" + image
             video = image.split('_')[0]
             correct_class = image.split('-')[2]
             frame = image.split('-')[-1]
