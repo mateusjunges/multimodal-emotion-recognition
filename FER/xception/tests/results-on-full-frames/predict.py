@@ -11,10 +11,10 @@ classes_fer = ["Angry", "Disgust", "Fearful", "Happy", "Sad", "Surprised", "Neut
 
 classes_ravdess = ["Neutral", "Calm", "Happy", "Sad", "Angry", "Fearful", "Disgust", "Surprised"]
 
-def main(args):
-    cropped_images_folder = args.images
-    model_path = args.model
-    weights_path = args.weights
+def main():
+    cropped_images_folder = "/home/mateus/Documents/datasets/ravdess-frames"
+    model_path = "/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/xception-model.h5"
+    weights_path = "/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/final_xception.h5"
 
     model = load_model(model_path)
     model.load_weights(weights_path)
@@ -25,11 +25,24 @@ def main(args):
     for actor in sorted(actors):
         done_actors += 1
         final_result = [
-            ["Angry", "Disgust", "Fearful", "Happy", "Sad", "Surprised", "Neutral", "Video", "Frame", "Correct_Class",
-             "Predicted_Class"]
+            [
+                "Angry",
+                "Disgust",
+                "Fearful",
+                "Happy",
+                "Sad",
+                "Surprised",
+                "Neutral",
+                "Video",
+                "Frame",
+                "Correct_Class",
+                "Predicted_Class",
+                "Correct_Class_Name",
+                "Predicted_Class_Name"
+            ]
         ]
 
-        csv_name = "Actor_{}.csv".format(actor)
+        csv_name = "{}.csv".format(actor)
 
         done = 0
 
@@ -57,27 +70,31 @@ def main(args):
             for item in prediction[0]:
                 predictions.append(float(item))
 
+            predicted_class_name = classes_fer[prediction_result]
+            correct_class_name = classes_ravdess[int(correct_class) - 1]
             predictions.append(video)
             predictions.append(frame)
             predictions.append(correct_class)
             predictions.append(prediction_result)
-
+            predictions.append(correct_class_name)
+            predictions.append(predicted_class_name)
             final_result.append(predictions)
 
             done += 1
 
-            print("Processing actor {} of {} actors - Image {} of {}".format(done_actors, len(actors), done, len(images)))
+            print("Processing actor {} of {} actors - Image {} of {} - Predicted: {} - Correct: {}".format(done_actors, len(actors), done, len(images), predicted_class_name, correct_class_name))
 
-    with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-full-frames/results/{}".format(csv_name), mode='a+') as file:
-            writer = csv.writer(file)
-            writer.writerows(final_result)
+            with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-full-frames/results-with-class-name/{}".format(csv_name), mode='a+') as file:
+                writer = csv.writer(file)
+                writer.writerows(final_result)
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('images', type=str, help="Path to the cropped images")
-    parser.add_argument('model', type=str, help="Pahth to the xception model")
+    parser.add_argument('model', type=str, help="Path to the xception model")
     parser.add_argument('weights', type=str, help="Path to the xception weights")
     return parser.parse_args(argv)
 
 if __name__ == '__main__':
-    main(parse_arguments(sys.argv[1:]))
+    # main(parse_arguments(sys.argv[1:]))
+    main()
