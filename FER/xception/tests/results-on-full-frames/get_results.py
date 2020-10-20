@@ -2,7 +2,7 @@ import os
 import csv
 import numpy as np
 
-base_path = '/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-cropped-faces/results-with-class-name'
+base_path = '/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-full-frames/results-with-class-name'
 csvs = sorted(os.listdir(base_path))
 
 correct = 0

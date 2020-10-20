@@ -1,0 +1,3 @@
+Acertou: 25585
+Errou: 156345
+RESULTADO FINAL: 14.06%

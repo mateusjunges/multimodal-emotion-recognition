@@ -23,6 +23,8 @@ def main():
     done_actors = 0
 
     for actor in sorted(actors):
+        if actor not in ["Actor_23", "Actor_24"]:
+            continue
         done_actors += 1
         final_result = [
             [
@@ -82,11 +84,11 @@ def main():
 
             done += 1
 
-            print("Processing actor {} of {} actors - Image {} of {} - Predicted: {} - Correct: {}".format(done_actors, len(actors), done, len(images), predicted_class_name, correct_class_name))
+            print("Processing actor {} of {} actors - Image {} of {} - Predicted: {} - Correct: {}".format(actor, len(actors), done, len(images), predicted_class_name, correct_class_name))
 
-            with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-full-frames/results-with-class-name/{}".format(csv_name), mode='a+') as file:
-                writer = csv.writer(file)
-                writer.writerows(final_result)
+        with open("/home/mateus/Documents/TCC/tcc-v2-1/FER/xception/tests/results-on-full-frames/results-with-class-name/{}".format(csv_name), mode='a+') as file:
+            writer = csv.writer(file)
+            writer.writerows(final_result)
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
