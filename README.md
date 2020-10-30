@@ -48,3 +48,23 @@ Como técnica de aumento de dados neste trabalho, foi utilizado inserção de ru
 
 Na Figura 3, mostrada abaixo, é possível ver a diferença na onda de sinal de áudio inicial e após o ruído de fundo ser inserido.
 ![Difference between the signal and the signal with background noise](docs/signal-and-signal-with-noise.png)
+
+
+#### Extração de espectogramas
+
+Como a extração de características para treinamento do modelo de reconhecimento de emoções em áudio foi realizada sobre os espectogramas dos áudios, fez-se necessário sua extração na fase de pré-processamento do sinal. Nos espectogramas, cores mais escuras mostram a frequência em uma baixa magnitude, enquanto que cores mais claras mostram a frequência em alta magnitude. Segundo O. Abdeil Hamid e A. Mohamed, em seu artigo "Convolutional neural networks for speech recognition" (2014), espectogramas se mostram adequados para uma variedade de análise na fala, incluindo análise de emoções. Uma amostra dos espectogramas extraídos é mostrado na Figura 2.
+
+![Exemplo de espectograma extraído dos áudios da base RAVDESS](docs/spectogram-example.jpg)
+
+#### Extração de características
+
+A extração de características é uma das mais importantes fases para o sucesso de qualquer modelo de aprendizagem de máquina. Segundo G. Trigeorgis (2016), uma extração de características apropriada pode contribuir para um melhor treinamento do modelo, enquanto que uma má extração de caracteríticas podem prejudicar significativamente o treinamento do modelo.
+Atualmente, CNNs são os modelos do estado da arte para extrair características de alto nível de imagens. Elas utilizam kernels para extrair características, que são usadas no treinamento da CNN para classificação. Uma CNN possui uma arquitetura de três componentes: camada convolucional, que contém alguns filtros que são aplicados a entrada; camadas de pool, que são usados para reduzir a dimensionalidade dos mapas de características. Por último, temos a camada completamente conectada (*fully connected layer*), que extrai as características que são passadas para um classificador SoftMax, retornando a probabilidade para cada classe. 
+
+### Classificadores
+Na literatura atual existem diversos classificadores que podem ser utilizados para detecção de emoção na fala. Neste trabalho, foram testados os 3 mais comuns, que são: *Decision Tree*, *Support Vector Machine* e *Randon Forest*. Para este trabalho, foram utilizados como características o *mfcc*, *chroma* e *mel-spectogram*. Todos os três classificadores foram treinados utilizando os mesmos dados de entrada, sendo 1004 áudios para treinamento e 431 reservados para teste, em uma proporção de 70\% e 30\%, respectivamente.
+
+#### Árvores de decisão
+Árvores de decisão são um método de aprendizado não parametrico utilizado para classificação e regressão. Elas dividem um conjunto de dados em subconjuntos cada vez menores de forma recursiva, enquanto que ao mesmo tempo uma árvore de decisão associada é desenvolvida de forma incremental, resultando em uma árvore com nós de decisão e nós folha, onde nó folha representa uma classificação ou decisão daquela árvore. Durante a execução dos testes, a árvore de decisão foi o algoritmo que aprensentou o pior resultado, com uma acurácia de 32,94\%. A matriz de confusão para a árvore de decisão utilizada pode ser vista na Figura 4. Podemos perceber que para este classificador, as maiores confusões ocorrem entre surpresa e tristeza, além de tristeza e raiva. Classes com uma maior distinção entre si, como felicidade e tristeza, por exemplo, apresentam uma taxa de confusão menor.
+
+![Matriz de confusão da árvore de decisão](docs/confusion-matrix-decision-tree-ravdess.png)
