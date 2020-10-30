@@ -36,7 +36,7 @@ Neste artigo, utilizamos três etapas para o reconhecimento das emoções na fal
 
 #### Pre-processamento do sinal
 
-O pre-processamento do sinal, na aprendizagem de máquina,   é uma etapa muito importante que ajuda a melhorar a qualidade dos dados e melhora a extração de características a partir dos dados. Em outras palavras, o pré-processamento é uma técnica que transforma dados brutos para um formato entendível e legível por computadores, ajudando a formatar e organizar esses dados, deixando-os pronto para serem usados em modelos de machine learning. Abaixo, descrevemos cada etapa utilizada no pré-processamento dos sinais de áudio extraídos da base [RAVDESS][https://zenodo.org/record/1188976].
+O pre-processamento do sinal, na aprendizagem de máquina,   é uma etapa muito importante que ajuda a melhorar a qualidade dos dados e melhora a extração de características a partir dos dados. Em outras palavras, o pré-processamento é uma técnica que transforma dados brutos para um formato entendível e legível por computadores, ajudando a formatar e organizar esses dados, deixando-os pronto para serem usados em modelos de machine learning. Abaixo, descrevemos cada etapa utilizada no pré-processamento dos sinais de áudio extraídos da base [RAVDESS](https://zenodo.org/record/1188976)
 
 #### Framing
 A técnica de framing consiste em dividir um sinal em pequenas janelas, chamadas de frames. Para processamento de fala, geralmente, essa janela varia de 20 milisegundos a 50 milisegundos, com 40\% de sobreposição entre elas.
