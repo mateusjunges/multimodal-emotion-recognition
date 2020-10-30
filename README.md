@@ -17,6 +17,8 @@ Esta artigo divide-se da seguinte maneira: na seção 2 são mostrados estudos r
 
 ## Trabalhos relacionados
 
+![Method illustration](docs/method-llustration.png)
+
 As pesquisas no campo da análise de emoções através da fala e expressões faciais de seres humanos cresce a cada dia.
 Diversos estudos visam o reconhecimento de emoções através da análise da fala e algumas outras modalidades, como características faciais, por exemplo. Redes neurais convolucionais (CNNs), modelos *Long Short-Term Memory}(LSTM) e redes neurasi profundas (ou \textit{Deep Belief Networks(DBNs)* são as abordagens que apresentam os melhores resultados.
 
@@ -26,3 +28,23 @@ Pan et al., utilizando a combinação de MFCCs, Mel-energy spectrum dynamic coef
 
 Um dos primeiros trabalhos com fusão de carcterísticas audio-visuais mostrou que um sistema bimodal é mais preciso que um sistema unimodal.
 
+### Reconhecimento de emoções através do áudio
+
+O reconhecimento e classificação de emoções é um dos tópicos mais desafiadores da ciência de dados.
+Segundo Ayushi Y. Vadwala, a fala é a mais crucial, conhecida e proeficiente forma de comunicação entre os seres humanos. O estado emocional de uma pessoa escondido em sua fala é um importante fator de interação entre pessoas, uma vez que nos dá feedback sobre a comunicação sem que seja necessário alterar o conteúdo que se está sendo expressado.
+Neste artigo, utilizamos três etapas para o reconhecimento das emoções na fala: pre-processamento do sinal de áudio, extração de características e, posteriormente, a classficação.
+
+#### Pre-processamento do sinal
+
+O pre-processamento do sinal, na aprendizagem de máquina,   é uma etapa muito importante que ajuda a melhorar a qualidade dos dados e melhora a extração de características a partir dos dados. Em outras palavras, o pré-processamento é uma técnica que transforma dados brutos para um formato entendível e legível por computadores, ajudando a formatar e organizar esses dados, deixando-os pronto para serem usados em modelos de machine learning. Abaixo, descrevemos cada etapa utilizada no pré-processamento dos sinais de áudio extraídos da base [RAVDESS][https://zenodo.org/record/1188976].
+
+#### Framing
+A técnica de framing consiste em dividir um sinal em pequenas janelas, chamadas de frames. Para processamento de fala, geralmente, essa janela varia de 20 milisegundos a 50 milisegundos, com 40\% de sobreposição entre elas.
+
+#### Aumento de dados
+De acordo com Daniel Ho, Eric Liang e Richard Liaw (2019), a técnica de aumento de dados é uma estratégia que permite aumentar de forma significativa a diversidade de dados disponíveis para treinamento de modelos, sem coletar novos dados. Além disso, técnicas de aumento de dados ajudam a prevenir overfitting, que acontece quando uma rede aprende de forma muito exata como modelar um conjunto de dados durante o treinamento, mas, posteriormente, falha em prever futuras observações dos dados de forma confiável.
+
+Como técnica de aumento de dados neste trabalho, foi utilizado inserção de ruído no sinal de áudio através de uma relação sinal ruído, uma medida utilizada na engenharia que compara os níveis desejados do sinal com o  nível do ruído de fundo.
+
+Na Figura 3, mostrada abaixo, é possível ver a diferença na onda de sinal de áudio inicial e após o ruído de fundo ser inserido.
+![Difference between the signal and the signal with background noise](docs/signal-and-signal-with-noise.png)
