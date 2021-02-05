@@ -1,0 +1,7 @@
+Total predictions: 1440
+--------------------------------------------------------
+Correct predictions using 'sum': 866 of 1440 (60%)
+Incorrect predictions using sum: 574 of 1440 (40%)
+--------------------------------------------------------
+Correct predictions using 'product': 884 of 1440 (61%)
+Incorrect predictions using 'product': 556 of 1440 (39%)
